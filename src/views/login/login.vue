@@ -1,8 +1,8 @@
 <template>
   <div>
-    <el-form :model="form" ref="form">
+      <el-form :model="form" ref="form">
       <el-form-item>
-        <el-input v-model="form.umCode" type="text" placeholder="请输入账号">
+        <el-input v-model="form.name" type="text" placeholder="请输入账号">
           <i slot="prefix" class="el-icon-user"></i>
         </el-input>
       </el-form-item>
@@ -17,7 +17,7 @@
       </el-form-item>
     </el-form>
     <div class="mt50">
-      <el-button>登录</el-button>
+      <el-button @click="getData">登录</el-button>
     </div>
     <el-footer>
       <div class="mt50">
@@ -31,13 +31,19 @@
 <script lang="ts">
 import { Component, Vue } from "vue-property-decorator";
 import { mapMutations } from "vuex";
+import {say} from "@/api/user.js"
 @Component({})
 export default class Login extends Vue {
   public form = {
-    umCode: "",
+    name: "",
     password: "",
   };
   public user: string = "";
+  getData(){
+    say(this.form).then((res:any) => {
+      this.user = res.data
+    })
+  }
   public login() {
     // let name = this.user;
     // if (permission && permission.indexOf(name) !== -1) {
