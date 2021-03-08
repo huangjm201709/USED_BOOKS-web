@@ -1,11 +1,11 @@
 import Vue from 'vue'
-import VueRouter, { RouteConfig } from 'vue-router'
-import entry from '@/views/entry.vue'
+import VueRouter from 'vue-router'
+import entry from "@/views/entry.vue"
 
 
 Vue.use(VueRouter)
 
-const routes: Array<RouteConfig> = [
+const routes = [
   {
     path: '/',
     redirect: '/entry'

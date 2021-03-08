@@ -2,9 +2,10 @@ import Vue from 'vue'
 import App from './App.vue'
 import router from './router'
 import store from './store'
-import EI from 'element-ui'
 import '../src/assets/css/common.less'
+import EI from 'element-ui'
 import  'element-ui/lib/theme-chalk/index.css'
+
 Vue.config.productionTip = false
 Vue.use(EI)
 new Vue({
@@ -23,3 +24,4 @@ router.beforeEach((to ,from, next) => {
     next({path: '/entry'})
   }
 })
+
