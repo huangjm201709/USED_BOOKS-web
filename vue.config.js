@@ -3,11 +3,23 @@ const HTMLPlugin = require('html-webpack-plugin');
 const webpack = require('webpack');
 const isDev = process.env.NODE_ENV === 'developement';
 const config = {
-  lintOnSave:false,
   // entry: ["babel-polyfill", path.join(__dirname, 'src/main.js')],
   // output: {
   //   path: path.join(__dirname, 'dist'),
   //   filename: 'bundle.js',
+  // },
+  // chainWebpack: config => {
+  //   config.resolve.alias.set('@', resolve('src'))
+  // },
+
+  // resolve: {
+  //   extensions: [".js", ".vue", ".json"], //文件优先解析后缀名顺序
+  //   alias: {
+  //     "@": path.resolve(__dirname, "./src"),
+  //     "@c": path.resolve(__dirname, "./src/components"),
+  //     "@v": path.resolve(__dirname, "./src/views"),
+  //     "@u": path.resolve(__dirname, "./src/utils"),
+  //   },
   // },
   devServer: {
     port: 8080,

@@ -11,35 +11,28 @@
             <el-radio-button label="1">注册</el-radio-button>
           </el-radio-group>
         </div>
-        <div class="mt50">
-          <Login v-if="index == '0' "></Login>
-          <Register v-else></Register>
+        <div class="mt50 children-ct">
+          <login v-if="index == '0'"></login>
+          <register v-else></register>
         </div>
       </el-main>
     </el-container>
   </div>
 </template>
 
-<script lang="ts">
-import Register from '@/views/register/register.vue';
-import Login from '@/views/login/login.vue';
-import { Component, Vue } from "vue-property-decorator";
-@Component({
-  components: {
-    Register,
-    Login,
+<script>
+import register from "@/views/register/register.vue";
+import login from "@/views/login/login.vue";
+export default {
+  components: { register, login },
+  data() {
+    return {
+      index: "0",
+    };
   },
-})
-export default class Entry extends Vue {
-  public index = "0";
-  form = {
-    umCode: "",
-  }
-  created() {
-    console.log('form: ');
-  }
-}
+};
 </script>
+
 <style lang="less" scoped>
 .el-main {
   width: 80%;
@@ -55,5 +48,10 @@ export default class Entry extends Vue {
   left: 50%;
   transform: translate(-50%, -50%);
   box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.1);
+  .children-ct{
+    /deep/ .el-form-item__error {
+      font-size: 16px;
+    }
+  }
 }
 </style>

@@ -1,23 +1,29 @@
 <template>
   <div>
-      <el-form :model="form" ref="form">
-      <el-form-item>
-        <el-input v-model="form.name" type="text" placeholder="请输入账号">
+    <el-form :model="form" ref="form" :rules="rules">
+      <el-form-item prop="name">
+        <el-input
+          v-model="form.name"
+          type="text"
+          placeholder="请输入账号"
+          clearable
+        >
           <i slot="prefix" class="el-icon-user"></i>
         </el-input>
       </el-form-item>
-      <el-form-item>
+      <el-form-item prop="password">
         <el-input
           v-model="form.password"
           type="password"
           placeholder="请输入密码"
+          clearable
         >
           <i slot="prefix" class="el-icon-lock"></i>
         </el-input>
       </el-form-item>
     </el-form>
     <div class="mt50">
-      <el-button @click="getData">登录</el-button>
+      <el-button @click="submitForm">登录</el-button>
     </div>
     <el-footer>
       <div class="mt50">
@@ -28,35 +34,52 @@
     </el-footer>
   </div>
 </template>
-<script lang="ts">
-import { Component, Vue } from "vue-property-decorator";
-import { mapMutations } from "vuex";
-import {say} from "@/api/user.js"
-@Component({})
-export default class Login extends Vue {
-  public form = {
-    name: "",
-    password: "",
-  };
-  public user: string = "";
-  getData(){
-    say(this.form).then((res:any) => {
-      this.user = res.data
-    })
-  }
-  public login() {
-    // let name = this.user;
-    // if (permission && permission.indexOf(name) !== -1) {
-    //   this.isShow = true;
-    //   this.setUser();
-    // } else {
-    //   this.$message.error("暂时没有注册你的信息哦！");
-    // }
-  }
-  public setUser() {
-    this.$store.commit("setUser", this.user);
-  }
-}
+<script>
+import {loginUser} from "@/api/user.js";
+export default {
+  data() {
+    var validatePwd = (rule, value, callback) => {
+      if (value === "") {
+        callback(new Error("请输入密码！"));
+      } else {
+        if (this.form.password !== "") {
+          this.$refs.form.validateField("validatePwd");
+        }
+        callback();
+      }
+    };
+    return {
+      form: {
+        name: "",
+        password: "",
+      },
+      rules: {
+        name: [
+          { required: true, message: "请输入账号！", trigger: "blur" },
+          // { min: 3, max: 5, message: "长度在 3 到 5 个字符", trigger: "blur" },
+        ],
+        password: [{ validator: validatePwd, trigger: "blur" }],
+      },
+    };
+  },
+  methods: {
+    checkLogin() {
+      loginUser(this.form).then(res => {
+
+        console.log(res);
+      })
+    },
+    submitForm() {
+      this.$refs.form.validate((valid) => {
+        if (valid) {
+          this.checkLogin();
+        } else {
+          return false;
+        }
+      });
+    },
+  },
+};
 </script>
 <style lang="less" scoped>
 </style>
