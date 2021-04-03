@@ -3,13 +3,12 @@ export const isEmail = function(e) {
   return regx.test(e)
 }
 export const isNotEmpty = function(data) {
-  debugger
   if (data == "") {
     return false
   }
   return true
 }
-// export default {
-//   isEmail,
-//   isNotEmpty
-// }
+export default {
+  isEmail,
+  isNotEmpty
+}

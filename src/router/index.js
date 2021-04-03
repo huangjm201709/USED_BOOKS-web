@@ -1,7 +1,9 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 import entry from "@/views/entry.vue"
-
+import home from "@/views/home/home.vue"
+import changePwd from "@/views/login/changePwd.vue"
+import retrievePwd from "@/views/login/retrievePwd.vue"
 
 Vue.use(VueRouter)
 
@@ -13,6 +15,18 @@ const routes = [
   {
     path: '/entry',
     component: entry,
+  },
+  {
+    path: '/changePwd',
+    component: changePwd,
+  },
+  {
+    path: '/retrievePwd',
+    component: retrievePwd,
+  },
+  {
+    path: '/home',
+    component: home,
   },
 ]
 

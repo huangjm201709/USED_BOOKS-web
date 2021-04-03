@@ -9,3 +9,23 @@ export function loginUser(data) {
         data: data,
     })
 }
+export function registerUser(data) {
+    return request({
+        method: 'post',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        url: manageURL + '/user/add',
+        data: data,
+    })
+}
+export function changePwd(data) {
+    return request({
+        method: 'post',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        url: manageURL + '/user/changePwd',
+        data: data,
+    })
+}

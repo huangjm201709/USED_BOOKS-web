@@ -27,15 +27,19 @@
     </div>
     <el-footer>
       <div class="mt50">
-        <span>修改密码</span>
+        <router-link target="_blank" :to="{ path: '/changePwd' }"
+          >修改密码</router-link
+        >
         <el-divider direction="vertical"></el-divider>
-        <span>忘记密码</span>
+        <router-link target="_blank" :to="{ path: '/retrievePwd' }"
+          >忘记密码</router-link
+        >
       </div>
     </el-footer>
   </div>
 </template>
 <script>
-import {loginUser} from "@/api/user.js";
+import { loginUser } from "@/api/user.js";
 export default {
   data() {
     var validatePwd = (rule, value, callback) => {
@@ -64,10 +68,9 @@ export default {
   },
   methods: {
     checkLogin() {
-      loginUser(this.form).then(res => {
-
+      loginUser(this.form).then((res) => {
         console.log(res);
-      })
+      });
     },
     submitForm() {
       this.$refs.form.validate((valid) => {

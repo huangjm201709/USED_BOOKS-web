@@ -2,7 +2,7 @@
   <div class="entry-ct">
     <el-container>
       <el-header>
-        <h1>二手书籍交易平台</h1>
+        <h1>闲者二手书籍交易平台</h1>
       </el-header>
       <el-main>
         <div class="rf radio-btn">
