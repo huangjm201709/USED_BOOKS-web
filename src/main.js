@@ -15,13 +15,13 @@ new Vue({
 }).$mount('#app')
 
 //导航
-router.beforeEach((to ,from, next) => {
-  //防止无限循环
-  if (to.path === '/entry') {
-    return next();
-  }
-  else {
-    next({path: '/entry'})
-  }
-})
+// router.beforeEach((to ,from, next) => {
+//   //防止无限循环
+//   if (to.path === '/entry') {
+//     return next();
+//   }
+//   else {
+//     next({path: '/entry'})
+//   }
+// })
 

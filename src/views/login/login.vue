@@ -69,7 +69,10 @@ export default {
   methods: {
     checkLogin() {
       loginUser(this.form).then((res) => {
-        console.log(res);
+        // 跳首页
+        if (res.status) {
+          this.$router.push("/home");
+        }
       });
     },
     submitForm() {
